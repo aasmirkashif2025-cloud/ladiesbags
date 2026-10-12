@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-ivory: #F7F3ED;
+    --color-sand: #E7DCCE;
+    --color-espresso: #49332D;
+    --color-burgundy: #632F39;
+    --color-champagne: #B49A72;
+    --color-white: #FFFFFF;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-espresso);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, .font-serif-editorial {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: -0.015em;
+  }
+
+  .font-brand-display {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.18em;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F3ED;
+}
+::-webkit-scrollbar-thumb {
+  background: #E7DCCE;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B49A72;
+}
+
+/* Luxury hairline borders */
+.border-luxury-hairline {
+  border-color: rgba(73, 51, 45, 0.12);
+}
+
+.border-luxury-subtle {
+  border-color: rgba(231, 220, 206, 0.6);
+}
+
+/* Accessibility: Respect user prefers-reduced-motion setting */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

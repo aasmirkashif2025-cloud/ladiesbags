@@ -1,0 +1,6 @@
+{
+  "name": "MAISON ÉLAN | Luxury Handbag Commerce Platform",
+  "description": "Editorial luxury women's handbag commerce platform featuring handcrafted silhouettes, bespoke craftsmanship, Pakistan & international commerce, and an editorial storefront.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

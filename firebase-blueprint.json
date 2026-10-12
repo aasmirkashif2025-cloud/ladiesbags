@@ -1,0 +1,147 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Luxury handbag product record including dimensions, leather origin, stock, and variants.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "slug": { "type": "string" },
+        "name": { "type": "string" },
+        "frenchSubtitle": { "type": "string" },
+        "silhouette": { "type": "string" },
+        "pricePKR": { "type": "number" },
+        "salePricePKR": { "type": "number" },
+        "collectionId": { "type": "string" },
+        "isNewArrival": { "type": "boolean" },
+        "isBestseller": { "type": "boolean" },
+        "isFeatured": { "type": "boolean" },
+        "description": { "type": "string" },
+        "inStock": { "type": "boolean" },
+        "totalInventory": { "type": "number" }
+      },
+      "required": ["id", "slug", "name", "silhouette", "pricePKR", "inStock"]
+    },
+    "Collection": {
+      "title": "Collection",
+      "description": "Editorial seasonal and permanent handbag collections.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "slug": { "type": "string" },
+        "name": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "description": { "type": "string" },
+        "heroImage": { "type": "string" },
+        "featured": { "type": "boolean" }
+      },
+      "required": ["id", "slug", "name"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer order with authoritative calculated totals, payment status, and fulfillment tracking.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerEmail": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "currency": { "type": "string" },
+        "totalPKR": { "type": "number" },
+        "totalCharged": { "type": "number" },
+        "paymentMethod": { "type": "string" },
+        "paymentStatus": { "type": "string" },
+        "fulfillmentStatus": { "type": "string" },
+        "trackingNumber": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "customerEmail", "totalPKR", "paymentMethod", "paymentStatus", "fulfillmentStatus"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Customer reviews with verified purchase and moderation status.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "productId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "rating": { "type": "number" },
+        "title": { "type": "string" },
+        "comment": { "type": "string" },
+        "verifiedPurchase": { "type": "boolean" },
+        "status": { "type": "string" },
+        "date": { "type": "string" }
+      },
+      "required": ["id", "productId", "customerName", "rating", "status"]
+    },
+    "DiscountCoupon": {
+      "title": "DiscountCoupon",
+      "description": "Promotional privilege discount codes.",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "type": { "type": "string" },
+        "value": { "type": "number" },
+        "minOrderPKR": { "type": "number" },
+        "isActive": { "type": "boolean" },
+        "description": { "type": "string" }
+      },
+      "required": ["code", "type", "value", "isActive"]
+    },
+    "BrandSettings": {
+      "title": "BrandSettings",
+      "description": "Global configurable store parameters, contact numbers, and threshold rules.",
+      "type": "object",
+      "properties": {
+        "brandName": { "type": "string" },
+        "brandTagline": { "type": "string" },
+        "announcementActive": { "type": "boolean" },
+        "announcementText": { "type": "string" },
+        "primaryCurrency": { "type": "string" }
+      },
+      "required": ["brandName"]
+    },
+    "User": {
+      "title": "User",
+      "description": "User profile with role-based authorization flag.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string" },
+        "fullName": { "type": "string" },
+        "role": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "email", "role"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Public handbag catalog read, admin write."
+    },
+    "/collections/{collectionId}": {
+      "schema": "Collection",
+      "description": "Public collections catalog read, admin write."
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Customer order documents. Read restricted to creator and admin; create open; update restricted to admin."
+    },
+    "/reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "Product reviews. Public read for approved reviews; create open for verified users; moderation by admin."
+    },
+    "/coupons/{couponCode}": {
+      "schema": "DiscountCoupon",
+      "description": "Active discount codes. Admin manage; public read."
+    },
+    "/settings/global": {
+      "schema": "BrandSettings",
+      "description": "Global store settings and branding options."
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User accounts with roles. Read/write by self, admin full access."
+    }
+  }
+}
